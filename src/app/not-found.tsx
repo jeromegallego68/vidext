@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 const NotFound = () => (
-  <div className="min-h-screen flex flex-col items-center justify-center p-8 bg-gradient-to-b from-gray-50 to-white">
+  <div className="min-h-screen flex flex-col items-center justify-center p-8">
     <div className="max-w-2xl w-full text-center space-y-8">
       <h1 className="text-9xl font-bold text-blue-600">404</h1>
       <h2 className="text-3xl font-semibold text-gray-900">Page Not Found</h2>

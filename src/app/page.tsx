@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 const Home = () => (
-	<div className="min-h-screen flex flex-col items-center justify-center p-8 from-gray-50 to-white">
+	<div className="min-h-screen flex flex-col items-center justify-center p-8">
 		<div className="max-w-4xl w-full text-center space-y-8">
 			<h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl">
 				Welcome to Your
