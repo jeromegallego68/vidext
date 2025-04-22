@@ -30,7 +30,9 @@ const TodoLayout = ({
 						</Link>
 					)}
 				</div>
-				{children}
+				<div className="flex justify-center">
+					{children}
+				</div>
 			</div>
 		</main>
 	);
