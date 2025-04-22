@@ -25,10 +25,7 @@ const TaskItem = ({
                 utils.todo.getTasks.setData(undefined, cachedData => {
                     return cachedData?.map(e => {
                         if (e.id === newData.id) {
-                            return {
-                                id: newData.id,
-                                ...newData
-                            }
+                            return newData;
                         }
                         return e;
                     });

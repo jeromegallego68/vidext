@@ -5,7 +5,7 @@ import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { TaskMutation, taskSchema } from '@/server/routers/todo/types';
+import { TaskCreation, taskSchema } from '@/server/routers/todo/types';
 import { trpc } from '@/utils/client';
 import { Form, Formik } from 'formik';
 import { withZodSchema } from 'formik-validator-zod';
@@ -30,7 +30,7 @@ const TaskForm = () =>  {
 		createdAt: String((new Date).getTime())
 	}
 
-	const onSubmit = (values: TaskMutation) => {
+	const onSubmit = (values: TaskCreation) => {
 		createTaskMutation.mutate(values);
 	}
 

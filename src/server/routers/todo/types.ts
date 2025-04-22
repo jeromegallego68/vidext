@@ -8,10 +8,10 @@ export const taskSchema = z.object({
 })
 export type Task = z.infer<typeof taskSchema>;
 
-export const taskMutationSchema = z.object({
+export const taskCreationSchema = z.object({
 	id: z.optional(z.number()),
 	text: z.string(),
 	completed: z.boolean(),
 	createdAt: z.string()
 })
-export type TaskMutation = z.infer<typeof taskMutationSchema>;
+export type TaskCreation = z.infer<typeof taskCreationSchema>;
