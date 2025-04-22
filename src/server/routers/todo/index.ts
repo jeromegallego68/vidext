@@ -1,5 +1,5 @@
 import { PrismaClient } from '@/generated/prisma';
-import { taskSchema } from '@/server/routers/todo/types';
+import { taskMutationSchema } from '@/server/routers/todo/types';
 import { publicProcedure, router } from '@/server/trpc';
 import { z } from 'zod';
 
@@ -10,7 +10,7 @@ export const todoRouter = router({
 		await prisma.todo.findMany()
 	)),
 	createTask: publicProcedure
-		.input(taskSchema)
+		.input(taskMutationSchema)
 		.mutation(async (opts) => {
 			const { input } = opts;
 			await prisma.todo.create({
@@ -22,7 +22,7 @@ export const todoRouter = router({
 			})
 		}),
 	updateTask: publicProcedure
-		.input(taskSchema)
+		.input(taskMutationSchema)
 		.mutation(async (opts) => {
 			const { input } = opts;
 			await prisma.todo.update({

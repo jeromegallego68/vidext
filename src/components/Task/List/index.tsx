@@ -1,12 +1,23 @@
 'use client';
 
 import Item from '@/components/Task/Item';
-import { trpc } from '@/utils/trpc';
+import { Task } from '@/server/routers/todo/types';
+import { trpc } from '@/utils/client';
 import { Loader2 } from "lucide-react";
 import Link from 'next/link';
 
-const TaskList = () => {
-	const getTasks = trpc.todo.getTasks.useQuery();
+interface TaskListProps {
+	initialData: Task[]
+}
+
+const TaskList = ({
+	initialData
+}: TaskListProps) => {
+	const getTasks = trpc.todo.getTasks.useQuery(undefined, {
+		initialData: initialData,
+		refetchOnMount: false,
+		refetchOnReconnect: false
+	});
   	const tasks = getTasks.data ?? [];
 	const isFetchingTasks = getTasks.isFetching;
 	const isTasksEmpty = !isFetchingTasks && tasks.length === 0;

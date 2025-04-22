@@ -1,9 +1,12 @@
 import List from '@/components/Task/List';
+import { serverClient } from '@/utils/serverClient';
 
-const TodoPage = () => {
+const TodoPage = async () => {
+  const todos = await serverClient.todo.getTasks();
+
   return (
     <div className="w-full ">
-       <List />
+       <List initialData={todos} />
     </div>
   );
 }

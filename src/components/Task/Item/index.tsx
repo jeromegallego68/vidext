@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { Task } from '@/server/routers/todo/types';
-import { trpc } from '@/utils/trpc';
+import { trpc } from '@/utils/client';
 
 interface TaskItemProps {
   data: Task;
