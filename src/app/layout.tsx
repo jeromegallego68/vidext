@@ -1,5 +1,6 @@
 import Provider from '@/components/Provider';
 import type { Metadata } from "next";
+import { ReactNode } from 'react';
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -7,11 +8,13 @@ export const metadata: Metadata = {
   description: "A simple todo list",
 };
 
+interface RootLayoutProps {
+  children: ReactNode;
+}
+
 const RootLayout = ({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) => {
+}: Readonly<RootLayoutProps>) => {
   return (
     <html lang="en">
       <body
