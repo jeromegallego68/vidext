@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
-export const ZTodo = z.object({
-	id: z.number(),
+export const taskSchema = z.object({
+	id: z.optional(z.number()),
 	text: z.string(),
 	completed: z.boolean(),
-	createdAt: z.number()
+	createdAt: z.string()
 })
 
-export type Todo = z.infer<typeof ZTodo>;
+export type Task = z.infer<typeof taskSchema>;

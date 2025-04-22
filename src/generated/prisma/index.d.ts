@@ -883,26 +883,24 @@ export namespace Prisma {
 
   export type TodoAvgAggregateOutputType = {
     id: number | null
-    createdAt: number | null
   }
 
   export type TodoSumAggregateOutputType = {
     id: number | null
-    createdAt: bigint | null
   }
 
   export type TodoMinAggregateOutputType = {
     id: number | null
     text: string | null
     completed: boolean | null
-    createdAt: bigint | null
+    createdAt: string | null
   }
 
   export type TodoMaxAggregateOutputType = {
     id: number | null
     text: string | null
     completed: boolean | null
-    createdAt: bigint | null
+    createdAt: string | null
   }
 
   export type TodoCountAggregateOutputType = {
@@ -916,12 +914,10 @@ export namespace Prisma {
 
   export type TodoAvgAggregateInputType = {
     id?: true
-    createdAt?: true
   }
 
   export type TodoSumAggregateInputType = {
     id?: true
-    createdAt?: true
   }
 
   export type TodoMinAggregateInputType = {
@@ -1036,7 +1032,7 @@ export namespace Prisma {
     id: number
     text: string
     completed: boolean
-    createdAt: bigint
+    createdAt: string
     _count: TodoCountAggregateOutputType | null
     _avg: TodoAvgAggregateOutputType | null
     _sum: TodoSumAggregateOutputType | null
@@ -1095,7 +1091,7 @@ export namespace Prisma {
       id: number
       text: string
       completed: boolean
-      createdAt: bigint
+      createdAt: string
     }, ExtArgs["result"]["todo"]>
     composites: {}
   }
@@ -1522,7 +1518,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Todo", 'Int'>
     readonly text: FieldRef<"Todo", 'String'>
     readonly completed: FieldRef<"Todo", 'Boolean'>
-    readonly createdAt: FieldRef<"Todo", 'BigInt'>
+    readonly createdAt: FieldRef<"Todo", 'String'>
   }
     
 
@@ -1943,13 +1939,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'BigInt'
-   */
-  export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
-    
-
-
-  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1966,7 +1955,7 @@ export namespace Prisma {
     id?: IntFilter<"Todo"> | number
     text?: StringFilter<"Todo"> | string
     completed?: BoolFilter<"Todo"> | boolean
-    createdAt?: BigIntFilter<"Todo"> | bigint | number
+    createdAt?: StringFilter<"Todo"> | string
   }
 
   export type TodoOrderByWithRelationInput = {
@@ -1983,7 +1972,7 @@ export namespace Prisma {
     NOT?: TodoWhereInput | TodoWhereInput[]
     text?: StringFilter<"Todo"> | string
     completed?: BoolFilter<"Todo"> | boolean
-    createdAt?: BigIntFilter<"Todo"> | bigint | number
+    createdAt?: StringFilter<"Todo"> | string
   }, "id">
 
   export type TodoOrderByWithAggregationInput = {
@@ -2005,53 +1994,53 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Todo"> | number
     text?: StringWithAggregatesFilter<"Todo"> | string
     completed?: BoolWithAggregatesFilter<"Todo"> | boolean
-    createdAt?: BigIntWithAggregatesFilter<"Todo"> | bigint | number
+    createdAt?: StringWithAggregatesFilter<"Todo"> | string
   }
 
   export type TodoCreateInput = {
     text: string
     completed?: boolean
-    createdAt: bigint | number
+    createdAt: string
   }
 
   export type TodoUncheckedCreateInput = {
     id?: number
     text: string
     completed?: boolean
-    createdAt: bigint | number
+    createdAt: string
   }
 
   export type TodoUpdateInput = {
     text?: StringFieldUpdateOperationsInput | string
     completed?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: StringFieldUpdateOperationsInput | string
   }
 
   export type TodoUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
     completed?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: StringFieldUpdateOperationsInput | string
   }
 
   export type TodoCreateManyInput = {
     id?: number
     text: string
     completed?: boolean
-    createdAt: bigint | number
+    createdAt: string
   }
 
   export type TodoUpdateManyMutationInput = {
     text?: StringFieldUpdateOperationsInput | string
     completed?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: StringFieldUpdateOperationsInput | string
   }
 
   export type TodoUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
     completed?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -2084,17 +2073,6 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type BigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[]
-    notIn?: bigint[] | number[]
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
-  }
-
   export type TodoCountOrderByAggregateInput = {
     id?: SortOrder
     text?: SortOrder
@@ -2104,7 +2082,6 @@ export namespace Prisma {
 
   export type TodoAvgOrderByAggregateInput = {
     id?: SortOrder
-    createdAt?: SortOrder
   }
 
   export type TodoMaxOrderByAggregateInput = {
@@ -2123,7 +2100,6 @@ export namespace Prisma {
 
   export type TodoSumOrderByAggregateInput = {
     id?: SortOrder
-    createdAt?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -2167,36 +2143,12 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[]
-    notIn?: bigint[] | number[]
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
-  }
-
-  export type BigIntFieldUpdateOperationsInput = {
-    set?: bigint | number
-    increment?: bigint | number
-    decrement?: bigint | number
-    multiply?: bigint | number
-    divide?: bigint | number
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -2235,17 +2187,6 @@ export namespace Prisma {
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedBigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[]
-    notIn?: bigint[] | number[]
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -2298,22 +2239,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[]
-    notIn?: bigint[] | number[]
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
   }
 
 

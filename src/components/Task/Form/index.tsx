@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation';
 const TaskForm = () =>  {
 	const router = useRouter()
 
-	const createTask = trpc.todo.createTask.useMutation({
+	const createTaskMutation = trpc.todo.createTask.useMutation({
 		onSuccess: () => {
 			router.push('/todo');
 		},
@@ -27,11 +27,11 @@ const TaskForm = () =>  {
 	const initialValues = {
 		text: '',
 		completed: false,
-		createdAt: (new Date).getTime()
+		createdAt: String((new Date).getTime())
 	}
 
 	const onSubmit = (values: Task) => {
-		createTask.mutate(values);
+		createTaskMutation.mutate(values);
 	}
 
 	return (
