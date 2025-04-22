@@ -1,23 +1,45 @@
 import { PrismaClient } from '@/generated/prisma';
-import { ZTodo } from '@/server/routers/todo/types';
+import { taskSchema } from '@/server/routers/todo/types';
 import { publicProcedure, router } from '@/server/trpc';
+import { z } from 'zod';
 
 const prisma = new PrismaClient();
 
 export const todoRouter = router({
-	getTodos: publicProcedure.query(async () => {
-		return await prisma.todo.findMany();
-	}),
-	addTodo: publicProcedure
-		.input(ZTodo)
+	getTasks: publicProcedure.query(async () => (
+		await prisma.todo.findMany()
+	)),
+	createTask: publicProcedure
+		.input(taskSchema)
 		.mutation(async (opts) => {
 			const { input } = opts;
 			await prisma.todo.create({
 				data: {
 					text: input.text,
 					completed: input.completed,
-					createdAt: (new Date).getTime()
+					createdAt: input.createdAt
 				}
+			})
+		}),
+	updateTask: publicProcedure
+		.input(taskSchema)
+		.mutation(async (opts) => {
+			const { input } = opts;
+			await prisma.todo.update({
+				where: { 
+					id: input.id
+				},
+				data: {
+					...input
+				}
+			})
+		}),
+	deleteTask: publicProcedure
+		.input(z.number())
+		.mutation(async (opts) => {
+			const id = opts.input;
+			await prisma.todo.delete({
+				where: { id }
 			})
 		})
 });
