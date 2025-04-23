@@ -3,6 +3,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { Task } from '@/server/routers/todo/types';
 import { trpc } from '@/utils/client';
+import { getErrorMessage } from '@/utils/helpers';
+import { toast } from 'sonner';
 
 interface TaskItemProps {
   data: Task;
@@ -23,14 +25,24 @@ const TaskItem = ({
                     return e;
                 });
             })
+            toast.success('Task successfully marked as complete');
         },
+        onError(error) {
+			console.log('error updating a task:' + JSON.stringify(error));
+			toast.error(getErrorMessage(error))
+		},
     });
     const deleteTaskMutation = trpc.todo.deleteTask.useMutation({
         onSuccess(_, id) {
             utils.todo.getTasks.setData(undefined, cachedData => {
                 return cachedData?.filter(e => e.id !== id)
             })
+            toast.success('Task removed successfully!');
         },
+        onError(error) {
+			console.log('error deleting a task:' + JSON.stringify(error));
+			toast.error(getErrorMessage(error))
+		},
     });
 
     const toggleTaskCompleted = (checked: boolean) => {

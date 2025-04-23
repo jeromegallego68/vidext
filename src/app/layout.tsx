@@ -1,4 +1,5 @@
 import Provider from '@/components/Provider';
+import { Toaster } from '@/components/ui/sonner';
 import type { Metadata } from "next";
 import { ReactNode } from 'react';
 import "./globals.css";
@@ -23,6 +24,7 @@ const RootLayout = ({
                 <Provider>
                     {children}
                 </Provider>
+                <Toaster />
             </body>
         </html>
     );

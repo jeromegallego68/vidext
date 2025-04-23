@@ -7,9 +7,11 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { TaskCreation, taskSchema } from '@/server/routers/todo/types';
 import { trpc } from '@/utils/client';
+import { getErrorMessage } from '@/utils/helpers';
 import { Form, Formik } from 'formik';
 import { withZodSchema } from 'formik-validator-zod';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 const TaskForm = () =>  {
 	const router = useRouter();
@@ -24,10 +26,11 @@ const TaskForm = () =>  {
 				return cacheUpdated;
 			});
 			router.push('/todo');
+			toast.success('Task created successfully!')
 		},
 		onError(error) {
 			console.log('error creating a new task:' + JSON.stringify(error));
-			// TODO: implement a toast modal to inform the user
+			toast.error(getErrorMessage(error))
 		},
 	});
 
