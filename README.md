@@ -1,5 +1,7 @@
 # Todo List Application
 
+A simple TODO application that allow you to create a task, mark as completed and remove it. 
+
 ## Prerequisites
 
 - Node.js 18.x or later
@@ -31,7 +33,6 @@ Edit the `.env` file with your database connection string and other required var
 4. Set up the database:
 ```bash
 npx prisma generate
-npx prisma db push
 ```
 
 5. Run the development server:
