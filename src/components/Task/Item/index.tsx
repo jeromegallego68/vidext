@@ -13,36 +13,36 @@ const TaskItem = ({
 }: TaskItemProps) => {
     const utils = trpc.useUtils()
 
-    const updateTaskMutation = trpc.todo.updateTask.useMutation();
-    const deleteTaskMutation = trpc.todo.deleteTask.useMutation();
+    const updateTaskMutation = trpc.todo.updateTask.useMutation({
+        onSuccess(newData) {  
+            utils.todo.getTasks.setData(undefined, cachedData => {
+                return cachedData?.map(e => {
+                    if (e.id === newData.id) {
+                        return newData;
+                    }
+                    return e;
+                });
+            })
+        },
+    });
+    const deleteTaskMutation = trpc.todo.deleteTask.useMutation({
+        onSuccess(_, id) {
+            utils.todo.getTasks.setData(undefined, cachedData => {
+                return cachedData?.filter(e => e.id !== id)
+            })
+        },
+    });
 
     const toggleTaskCompleted = (checked: boolean) => {
         updateTaskMutation.mutate({
             ...data,
             completed: checked
-        }, {
-            onSuccess(_, newData) {  
-                utils.todo.getTasks.setData(undefined, cachedData => {
-                    return cachedData?.map(e => {
-                        if (e.id === newData.id) {
-                            return newData;
-                        }
-                        return e;
-                    });
-                })
-            },
         });
     }
 
     const deleteTask = () => {
         if (data.id) {
-            deleteTaskMutation.mutate(data.id, {
-                onSuccess(_, id) {
-                    utils.todo.getTasks.setData(undefined, cachedData => {
-                        return cachedData?.filter(e => e.id !== id)
-                    })
-                },
-            });
+            deleteTaskMutation.mutate(data.id);
         }
     }
 
