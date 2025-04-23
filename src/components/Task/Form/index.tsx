@@ -12,10 +12,17 @@ import { withZodSchema } from 'formik-validator-zod';
 import { useRouter } from 'next/navigation';
 
 const TaskForm = () =>  {
-	const router = useRouter()
+	const router = useRouter();
+	const utils = trpc.useUtils();
 
 	const createTaskMutation = trpc.todo.createTask.useMutation({
-		onSuccess: () => {
+		onSuccess(newData) {
+			utils.todo.getTasks.setData(undefined, cachedData => {
+				if (!cachedData) return [newData];
+				const cacheUpdated = [...cachedData];
+				cacheUpdated.push(newData);
+				return cacheUpdated;
+			});
 			router.push('/todo');
 		},
 		onError(error) {
