@@ -51,6 +51,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - `npm run build` - Build the application for production
 - `npm run start` - Start the production server
 - `npm run lint` - Run ESLint to check code quality
+- `npm run test` - Run Jest unit tests
+- `npm run test-e2e` - Run Playwright end-to-end tests
+- `npm run test-all` - Run both unit and e2e tests
+
 
 ## Technologies Used
 
@@ -61,6 +65,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [Formik](https://formik.org/)
 - [Zod](https://zod.dev/)
 - [Prisma](https://www.prisma.io/)
+- [Jest](https://jestjs.io/)
+- [Playwright](https://playwright.dev/)
+- [Testing Library](https://testing-library.com/)
 
 ## License
 
